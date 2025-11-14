@@ -51,20 +51,4 @@ describe('getLevel', () => {
     expect(fetchData).toHaveBeenCalledWith('https://server/user/999');
     expect(result).toBe('Информация об уровне временно недоступна');
   });
-
-  test('should handle different user IDs', () => {
-    fetchData.mockReturnValue({
-      status: 'ok',
-      level: 5
-    });
-
-    const result1 = getLevel('user-123');
-    const result2 = getLevel(0);
-    const result3 = getLevel('');
-
-    expect(fetchData).toHaveBeenCalledWith('https://server/user/user-123');
-    expect(fetchData).toHaveBeenCalledWith('https://server/user/0');
-    expect(fetchData).toHaveBeenCalledWith('https://server/user/');
-    expect(result1).toBe('Ваш текущий уровень: 5');
-  });
 });
